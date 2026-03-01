@@ -22,8 +22,9 @@ import { PreferencesModule } from './preferences/preferences.module';
         password: config.get<string>('DB_PASSWORD', 'password'),
         database: config.get<string>('DB_NAME', 'ecommerce_customer'),
         entities: Object.values(entities) as any,
-        synchronize: config.get<string>('NODE_ENV') !== 'production',
-        logging: config.get<string>('NODE_ENV') === 'development',
+        //synchronize: config.get<string>('NODE_ENV') !== 'production',
+        logging: true,  // or 'all' | ['query', 'error'] | false
+        logger: 'advanced-console', // 'simple-console' | 'file' | 'debug'
         poolSize: 20,
         extra: {
           max: 20,

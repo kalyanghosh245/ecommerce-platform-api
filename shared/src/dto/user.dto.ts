@@ -4,6 +4,10 @@ import { UserRole } from '../entities/user.entity';
 
 export class CreateUserDto {
   @ApiProperty()
+  @IsString()
+  userId: string;
+
+  @ApiProperty()
   @IsEmail()
   email: string;
 
@@ -86,7 +90,7 @@ export class UpdateUserDto {
 }
 
 export class UserResponseDto {
-  id: string;
+  userId: string;
   email: string;
   firstName: string;
   lastName: string;

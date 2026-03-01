@@ -24,6 +24,10 @@ let User = class User extends base_entity_1.BaseEntity {
 };
 exports.User = User;
 __decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid', { name: 'user_id' }),
+    __metadata("design:type", String)
+], User.prototype, "userId", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);

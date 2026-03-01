@@ -4,7 +4,8 @@ import { Repository } from 'typeorm';
 import { User } from '@ecommerce/shared';
 
 export interface Address {
-  id: string;
+  addressId: string;
+  userId: string;
   firstName: string;
   lastName: string;
   addressLine1: string;
@@ -30,20 +31,20 @@ export class AddressService {
   }
 
   async getAddresses(userId: string): Promise<Address[]> {
-    const user = await this.userRepo.findOne({ where: { id: userId } });
+    const user = await this.userRepo.findOne({ where: { userId: userId } });
     if (!user) throw new NotFoundException('User not found');
     return this.getUserAddresses(user);
   }
 
-  async addAddress(userId: string, address: Omit<Address, 'id'>): Promise<Address[]> {
-    const user = await this.userRepo.findOne({ where: { id: userId } });
+  async addAddress(userId: string, address: Omit<Address, 'addressId'>): Promise<Address[]> {
+    const user = await this.userRepo.findOne({ where: { userId: userId } });
     if (!user) throw new NotFoundException('User not found');
 
     const addresses = this.getUserAddresses(user);
     
     const newAddress: Address = {
       ...address,
-      id: crypto.randomUUID(),
+      addressId: crypto.randomUUID(),
     };
 
     if (address.isDefault) {
@@ -60,16 +61,16 @@ export class AddressService {
   }
 
   async updateAddress(userId: string, addressId: string, updates: Partial<Address>): Promise<Address[]> {
-    const user = await this.userRepo.findOne({ where: { id: userId } });
+    const user = await this.userRepo.findOne({ where: { userId: userId } });
     if (!user) throw new NotFoundException('User not found');
 
     const addresses = this.getUserAddresses(user);
-    const index = addresses.findIndex(a => a.id === addressId);
+    const index = addresses.findIndex(a => a.addressId === addressId);
     if (index === -1) throw new NotFoundException('Address not found');
 
     if (updates.isDefault) {
       addresses.forEach(a => { 
-        if (a.id !== addressId && a.type === addresses[index].type) a.isDefault = false; 
+        if (a.addressId !== addressId && a.type === addresses[index].type) a.isDefault = false; 
       });
     }
 
@@ -83,10 +84,10 @@ export class AddressService {
   }
 
   async deleteAddress(userId: string, addressId: string): Promise<Address[]> {
-    const user = await this.userRepo.findOne({ where: { id: userId } });
+    const user = await this.userRepo.findOne({ where: { userId: userId } });
     if (!user) throw new NotFoundException('User not found');
 
-    const addresses = this.getUserAddresses(user).filter(a => a.id !== addressId);
+    const addresses = this.getUserAddresses(user).filter(a => a.addressId !== addressId);
     
     if (!user.preferences) user.preferences = {} as any;
     user.preferences.addresses = addresses;

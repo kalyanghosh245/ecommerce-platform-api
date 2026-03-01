@@ -7,6 +7,7 @@ export declare enum UserRole {
     GUEST = "guest"
 }
 export declare class User extends BaseEntity {
+    userId: string;
     email: string;
     passwordHash: string | null;
     firstName: string;

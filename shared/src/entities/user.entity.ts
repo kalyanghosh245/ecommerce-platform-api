@@ -1,4 +1,4 @@
-import { Entity, Column, Index, OneToMany } from 'typeorm';
+import { Entity, Column, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { Order } from './order.entity';
 
@@ -12,6 +12,9 @@ export enum UserRole {
 @Entity('users')
 @Index(['email'], { unique: true })
 export class User extends BaseEntity {
+  @PrimaryGeneratedColumn('uuid', { name: 'user_id' })
+  userId: string;
+
   @Column({ type: 'varchar', length: 255 })
   email: string;
 

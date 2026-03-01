@@ -4,7 +4,7 @@ import { ProfileService } from './profile.service';
 import { UpdateUserDto, ChangePasswordDto } from '@ecommerce/shared';
 
 @ApiTags('Profile')
-@Controller('profile')
+@Controller('customer/profile')
 export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
 

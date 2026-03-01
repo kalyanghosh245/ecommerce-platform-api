@@ -11,7 +11,7 @@ export class PreferencesService {
   ) {}
 
   async getPreferences(userId: string): Promise<any> {
-    const user = await this.userRepo.findOne({ where: { id: userId } });
+    const user = await this.userRepo.findOne({ where: { userId: userId } });
     if (!user) throw new NotFoundException('User not found');
 
     return {
@@ -23,7 +23,7 @@ export class PreferencesService {
   }
 
   async updatePreferences(userId: string, preferences: any): Promise<any> {
-    const user = await this.userRepo.findOne({ where: { id: userId } });
+    const user = await this.userRepo.findOne({ where: { userId: userId } });
     if (!user) throw new NotFoundException('User not found');
 
     if (!user.preferences) {
@@ -43,7 +43,7 @@ export class PreferencesService {
   }
 
   async updateMarketingConsent(userId: string, consent: boolean, ipAddress: string): Promise<void> {
-    const user = await this.userRepo.findOne({ where: { id: userId } });
+    const user = await this.userRepo.findOne({ where: { userId: userId } });
     if (!user) throw new NotFoundException('User not found');
 
     user.consentMarketingAt = consent ? new Date() : null;

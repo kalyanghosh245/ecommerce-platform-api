@@ -15,10 +15,6 @@ class BaseEntity {
 }
 exports.BaseEntity = BaseEntity;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
-    __metadata("design:type", String)
-], BaseEntity.prototype, "id", void 0);
-__decorate([
     (0, typeorm_1.CreateDateColumn)({ name: 'created_at', type: 'timestamptz' }),
     __metadata("design:type", Date)
 ], BaseEntity.prototype, "createdAt", void 0);
