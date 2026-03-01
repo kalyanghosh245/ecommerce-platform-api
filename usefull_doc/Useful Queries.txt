@@ -1,0 +1,59 @@
+-- Get Trending/New Arrival/Bestseller products with inventory
+-- (Run this in product_db)
+SELECT 
+    p.product_id,
+    p.name,
+    p.slug,
+    p.base_price,
+    p.sale_price,
+    p.product_type,
+    p.material,
+    p.color,
+    pi.image_url as primary_image,
+    i.quantity_available as stock,
+    c.name as category_name
+FROM products p
+LEFT JOIN product_images pi ON p.product_id = pi.product_id AND pi.is_primary = true
+LEFT JOIN inventory i ON p.product_id = i.product_id
+LEFT JOIN categories c ON p.category_id = c.category_id
+WHERE p.product_type IN ('trending', 'new_arrival', 'bestseller')
+AND p.status = 'active'
+AND i.quantity_available > 0
+ORDER BY 
+    CASE p.product_type 
+        WHEN 'trending' THEN 1 
+        WHEN 'bestseller' THEN 2 
+        WHEN 'new_arrival' THEN 3 
+    END,
+    p.created_at DESC;
+
+-- Daily Sales Dashboard Query (Run in admin_db)
+SELECT 
+    date,
+    total_orders,
+    total_revenue,
+    average_order_value,
+    new_customers,
+    returning_customers,
+    ROUND((cod_orders::numeric / NULLIF(total_orders, 0) * 100), 2) as cod_percentage
+FROM daily_sales_stats
+WHERE date >= CURRENT_DATE - INTERVAL '30 days'
+ORDER BY date DESC;
+
+-- Low Stock Alert (Run in product_db)
+SELECT 
+    p.sku,
+    p.name,
+    i.quantity_available,
+    i.reorder_level,
+    (i.reorder_level - i.quantity_available) as shortage
+FROM products p
+JOIN inventory i ON p.product_id = i.product_id
+WHERE i.quantity_available <= i.reorder_level
+AND p.status = 'active'
+ORDER BY i.quantity_available ASC;
+
+-- Customer Lifetime Value (Run across services via API aggregation)
+-- user_db: Get user details
+-- order_db: SUM(total_amount) GROUP BY user_id
+-- payment_db: COUNT successful payments

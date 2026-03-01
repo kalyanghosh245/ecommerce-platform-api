@@ -1,0 +1,4 @@
+# Daily automated backups for each service
+pg_dump product_db > product_db_$(date +%Y%m%d).sql
+pg_dump user_db > user_db_$(date +%Y%m%d).sql
+# ... etc

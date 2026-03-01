@@ -1,0 +1,7 @@
+| Service                  | Purpose                     | Responsibility                                               |
+| ------------------------ | --------------------------- | ------------------------------------------------------------ |
+| **Product Service**      | Product catalog & inventory | Products, categories, stock management, search               |
+| **Order Service**        | Cart & orders               | Shopping cart, checkout, order processing, payments          |
+| **Admin Service**        | Back-office management      | Product CRUD, inventory management, reports, user management |
+| **Customer Service**     | User profiles               | Customer profiles, addresses, preferences, order history     |
+| **Notification Service** | Communications              | Emails, SMS, push notifications                              |

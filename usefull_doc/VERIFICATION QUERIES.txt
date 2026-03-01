@@ -1,0 +1,50 @@
+-- Check all payment methods
+SELECT 
+    code,
+    name,
+    is_online,
+    processing_fee_percent || '%' as fee,
+    is_active
+FROM payment_methods
+ORDER BY is_online, code;
+
+-- Check payments with method details
+SELECT 
+    p.payment_id,
+    p.order_id,
+    p.amount,
+    p.method_code,
+    p.status,
+    p.gateway_payment_id,
+    p.completed_at,
+    CASE 
+        WHEN p.method_code = 'cod' AND NOT p.cod_verified THEN '⏳ Awaiting COD verification'
+        WHEN p.status = 'completed' THEN '✅ Paid'
+        ELSE p.status
+    END as payment_status
+FROM payments p
+ORDER BY p.created_at DESC;
+
+-- Check refunds
+SELECT 
+    r.refund_id,
+    r.amount,
+    r.reason,
+    r.status,
+    r.requested_at,
+    p.method_code as original_payment_method
+FROM refunds r
+JOIN payments p ON r.payment_id = p.payment_id;
+
+-- Daily reconciliation summary
+SELECT 
+    DATE(p.created_at) as date,
+    pm.name as method,
+    COUNT(*) as transactions,
+    SUM(p.amount) as total_amount,
+    SUM(p.amount * pm.processing_fee_percent / 100) as total_fees
+FROM payments p
+JOIN payment_methods pm ON p.method_id = pm.method_id
+WHERE p.status = 'completed'
+GROUP BY DATE(p.created_at), pm.name
+ORDER BY date DESC, method;
