@@ -1,8 +1,8 @@
-ecommerce-platform/
-├── shared/                                    
-│   ├── src/
-│   │   ├── entities/
-│   │   │   ├── index.ts                       ✅
+ecommerce-platform
+├── shared                                    
+│   ├── src
+│   │   ├── entities
+│   │   │   ├── index.ts                       
 │   │   │   ├── base.entity.ts                 
 │   │   │   ├── user.entity.ts                 
 │   │   │   ├── category.entity.ts             
