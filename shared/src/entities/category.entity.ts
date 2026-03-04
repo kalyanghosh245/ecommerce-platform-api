@@ -1,4 +1,4 @@
-import { Entity, Column, Tree, TreeChildren, TreeParent, OneToMany, Index } from 'typeorm';
+import { Entity, Column, Tree, TreeChildren, TreeParent, OneToMany, Index, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { Product } from './product.entity';
 
@@ -6,6 +6,9 @@ import { Product } from './product.entity';
 @Tree('materialized-path')
 @Index(['slug'], { unique: true })
 export class Category extends BaseEntity {
+  @PrimaryGeneratedColumn('uuid', { name: 'category_id' })
+  categoryId: string;
+
   @Column({ type: 'varchar', length: 100 })
   name: string;
 

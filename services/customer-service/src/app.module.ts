@@ -5,7 +5,8 @@ import * as entities from '@ecommerce/shared';
 import { ProfileModule } from './profile/profile.module';
 import { AddressModule } from './address/address.module';
 import { PreferencesModule } from './preferences/preferences.module'; 
- 
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -22,6 +23,7 @@ import { PreferencesModule } from './preferences/preferences.module';
         password: config.get<string>('DB_PASSWORD', 'password'),
         database: config.get<string>('DB_NAME', 'ecommerce_customer'),
         entities: Object.values(entities) as any,
+        namingStrategy: new SnakeNamingStrategy(),
         //synchronize: config.get<string>('NODE_ENV') !== 'production',
         logging: true,  // or 'all' | ['query', 'error'] | false
         logger: 'advanced-console', // 'simple-console' | 'file' | 'debug'

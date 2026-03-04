@@ -8,3 +8,5 @@ cd product-service
 npm install @nestjs/typeorm typeorm pg @nestjs/config @nestjs/swagger class-validator class-transformer
 npm install opossum # Circuit breaker for inter-service calls
 npm install ../../shared  # Link shared library
+
+npm install typeorm-naming-strategies

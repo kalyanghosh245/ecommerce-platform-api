@@ -18,6 +18,7 @@ export declare enum PaymentStatus {
     REFUNDED = "refunded"
 }
 export declare class Order extends BaseEntity {
+    orderId: string;
     orderNumber: string;
     userId: string;
     user: User;

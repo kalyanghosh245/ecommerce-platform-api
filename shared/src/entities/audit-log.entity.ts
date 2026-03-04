@@ -1,4 +1,4 @@
-import { Entity, Column, Index } from 'typeorm';
+import { Entity, Column, Index, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from './base.entity';
 
 export enum AuditAction {
@@ -18,6 +18,9 @@ export enum AuditAction {
 @Index(['action'])
 @Index(['createdAt'])
 export class AuditLog extends BaseEntity {
+  @PrimaryGeneratedColumn('uuid', { name: 'log_id' })
+  logId: string;
+
   @Column({ type: 'uuid', nullable: true })
   userId: string | null;
 

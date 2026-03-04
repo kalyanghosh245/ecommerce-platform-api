@@ -27,6 +27,10 @@ let AuditLog = class AuditLog extends base_entity_1.BaseEntity {
 };
 exports.AuditLog = AuditLog;
 __decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid', { name: 'log_id' }),
+    __metadata("design:type", String)
+], AuditLog.prototype, "logId", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'uuid', nullable: true }),
     __metadata("design:type", String)
 ], AuditLog.prototype, "userId", void 0);

@@ -17,6 +17,10 @@ let Inventory = class Inventory extends base_entity_1.BaseEntity {
 };
 exports.Inventory = Inventory;
 __decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid', { name: 'inventory_id' }),
+    __metadata("design:type", String)
+], Inventory.prototype, "inventoryId", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'uuid' }),
     __metadata("design:type", String)
 ], Inventory.prototype, "productId", void 0);

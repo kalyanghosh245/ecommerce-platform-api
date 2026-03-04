@@ -18,6 +18,10 @@ let OrderItem = class OrderItem extends base_entity_1.BaseEntity {
 };
 exports.OrderItem = OrderItem;
 __decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid', { name: 'order_item_id' }),
+    __metadata("design:type", String)
+], OrderItem.prototype, "orderItemId", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'uuid' }),
     __metadata("design:type", String)
 ], OrderItem.prototype, "orderId", void 0);

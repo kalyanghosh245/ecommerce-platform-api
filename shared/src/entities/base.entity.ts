@@ -17,6 +17,6 @@ export abstract class BaseEntity {
   @Column({ name: 'updated_by', type: 'uuid', nullable: true })
   updatedBy: string | null;
 
-  @Column({ name: 'version', type: 'integer', default: 1 })
-  version: number; // Optimistic locking for concurrent requests
+  // @Column({ name: 'version', type: 'integer', default: 1 })
+  // version: number; // Optimistic locking for concurrent requests
 }

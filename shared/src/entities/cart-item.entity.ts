@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, JoinColumn, Index, Unique } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, Index, Unique, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { Cart } from './cart.entity';
 import { Product } from './product.entity';
@@ -7,6 +7,9 @@ import { Product } from './product.entity';
 @Unique(['cartId', 'productId'])
 @Index(['cartId'])
 export class CartItem extends BaseEntity {
+  @PrimaryGeneratedColumn('uuid', { name: 'cart_item_id' })
+  cartItemId: string;
+
   @Column({ type: 'uuid' })
   cartId: string;
 

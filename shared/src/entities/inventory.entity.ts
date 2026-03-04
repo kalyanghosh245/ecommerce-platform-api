@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, JoinColumn, Index, VersionColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, Index, VersionColumn, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { Product } from './product.entity';
 
@@ -6,6 +6,9 @@ import { Product } from './product.entity';
 @Index(['productId'])
 @Index(['warehouseId'])
 export class Inventory extends BaseEntity {
+  @PrimaryGeneratedColumn('uuid', { name: 'inventory_id' })
+  inventoryId: string;
+
   @Column({ type: 'uuid' })
   productId: string;
 

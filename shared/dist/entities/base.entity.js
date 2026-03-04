@@ -34,8 +34,4 @@ __decorate([
     (0, typeorm_1.Column)({ name: 'updated_by', type: 'uuid', nullable: true }),
     __metadata("design:type", String)
 ], BaseEntity.prototype, "updatedBy", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ name: 'version', type: 'integer', default: 1 }),
-    __metadata("design:type", Number)
-], BaseEntity.prototype, "version", void 0);
 //# sourceMappingURL=base.entity.js.map

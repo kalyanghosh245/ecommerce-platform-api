@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, JoinColumn, OneToMany, Index } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, OneToMany, Index, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { Category } from './category.entity';
 import { Inventory } from './inventory.entity';
@@ -10,6 +10,9 @@ import { OrderItem } from './order-item.entity';
 @Index(['price'])
 @Index(['name'], { fulltext: true }) // For search
 export class Product extends BaseEntity {
+  @PrimaryGeneratedColumn('uuid', { name: 'product_id' })
+  productId: string;
+
   @Column({ type: 'varchar', length: 255 })
   name: string;
 

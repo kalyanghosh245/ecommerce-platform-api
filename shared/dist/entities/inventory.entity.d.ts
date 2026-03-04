@@ -1,6 +1,7 @@
 import { BaseEntity } from './base.entity';
 import { Product } from './product.entity';
 export declare class Inventory extends BaseEntity {
+    inventoryId: string;
     productId: string;
     product: Product;
     warehouseId: string;

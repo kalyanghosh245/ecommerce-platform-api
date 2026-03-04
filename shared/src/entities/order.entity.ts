@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, JoinColumn, OneToMany, Index } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, OneToMany, Index, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { User } from './user.entity';
 import { OrderItem } from './order-item.entity';
@@ -27,6 +27,9 @@ export enum PaymentStatus {
 @Index(['status'])
 @Index(['createdAt'])
 export class Order extends BaseEntity {
+  @PrimaryGeneratedColumn('uuid', { name: 'order_id' })
+  orderId: string;
+
   @Column({ type: 'varchar', length: 50, unique: true })
   orderNumber: string;
 

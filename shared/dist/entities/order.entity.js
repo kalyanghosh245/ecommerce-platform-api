@@ -36,6 +36,10 @@ let Order = class Order extends base_entity_1.BaseEntity {
 };
 exports.Order = Order;
 __decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid', { name: 'order_id' }),
+    __metadata("design:type", String)
+], Order.prototype, "orderId", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 50, unique: true }),
     __metadata("design:type", String)
 ], Order.prototype, "orderNumber", void 0);

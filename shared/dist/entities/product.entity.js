@@ -19,6 +19,10 @@ let Product = class Product extends base_entity_1.BaseEntity {
 };
 exports.Product = Product;
 __decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid', { name: 'product_id' }),
+    __metadata("design:type", String)
+], Product.prototype, "productId", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     __metadata("design:type", String)
 ], Product.prototype, "name", void 0);

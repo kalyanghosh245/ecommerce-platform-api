@@ -18,6 +18,10 @@ let CartItem = class CartItem extends base_entity_1.BaseEntity {
 };
 exports.CartItem = CartItem;
 __decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid', { name: 'cart_item_id' }),
+    __metadata("design:type", String)
+], CartItem.prototype, "cartItemId", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'uuid' }),
     __metadata("design:type", String)
 ], CartItem.prototype, "cartId", void 0);

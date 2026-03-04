@@ -38,6 +38,10 @@ let Payment = class Payment extends base_entity_1.BaseEntity {
 };
 exports.Payment = Payment;
 __decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid', { name: 'payment_id' }),
+    __metadata("design:type", String)
+], Payment.prototype, "paymentId", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'uuid' }),
     __metadata("design:type", String)
 ], Payment.prototype, "orderId", void 0);

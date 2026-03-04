@@ -4,5 +4,4 @@ export declare abstract class BaseEntity {
     deletedAt: Date | null;
     createdBy: string | null;
     updatedBy: string | null;
-    version: number;
 }

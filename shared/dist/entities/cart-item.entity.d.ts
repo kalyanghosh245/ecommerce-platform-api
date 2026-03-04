@@ -2,6 +2,7 @@ import { BaseEntity } from './base.entity';
 import { Cart } from './cart.entity';
 import { Product } from './product.entity';
 export declare class CartItem extends BaseEntity {
+    cartItemId: string;
     cartId: string;
     cart: Cart;
     productId: string;

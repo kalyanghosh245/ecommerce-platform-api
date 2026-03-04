@@ -20,6 +20,7 @@ export declare enum PaymentProvider {
     MANUAL = "manual"
 }
 export declare class Payment extends BaseEntity {
+    paymentId: string;
     orderId: string;
     order: Order;
     transactionId: string;

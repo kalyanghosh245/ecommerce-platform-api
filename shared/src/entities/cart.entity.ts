@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, JoinColumn, OneToMany, Index } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, OneToMany, Index, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { User } from './user.entity';
 import { CartItem } from './cart-item.entity';
@@ -7,6 +7,9 @@ import { CartItem } from './cart-item.entity';
 @Index(['userId'], { unique: true, where: '"userId" IS NOT NULL' })
 @Index(['sessionId'], { where: '"userId" IS NULL' })
 export class Cart extends BaseEntity {
+  @PrimaryGeneratedColumn('uuid', { name: 'cart_id' })
+  cartId: string;
+
   @Column({ type: 'uuid', nullable: true })
   userId: string | null;
 

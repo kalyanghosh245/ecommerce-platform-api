@@ -3,6 +3,7 @@ import { Category } from './category.entity';
 import { Inventory } from './inventory.entity';
 import { OrderItem } from './order-item.entity';
 export declare class Product extends BaseEntity {
+    productId: string;
     name: string;
     description: string;
     sku: string;
